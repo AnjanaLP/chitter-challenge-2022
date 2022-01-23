@@ -6,8 +6,9 @@ require 'capybara/rspec'
 require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
-require 'support/database_cleaner'
-require 'support/test_helpers'
+require_relative 'support/database_cleaner'
+require_relative 'support/factory_bot'
+require_relative 'helpers'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -17,5 +18,5 @@ SimpleCov.start
 Capybara.app = Chitter
 
 RSpec.configure do |config|
-  config.include TestHelpers
+  config.include Helpers
 end

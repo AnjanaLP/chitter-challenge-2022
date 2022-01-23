@@ -17,6 +17,7 @@ gem 'webrick'
 group :test do
   gem 'capybara'
   gem 'database_cleaner-active_record'
+  gem 'factory_bot'
   gem 'rspec'
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
