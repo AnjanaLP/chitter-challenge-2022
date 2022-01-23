@@ -57,5 +57,13 @@ feature 'User registration' do
         expect(page).to have_content "#{attribute.capitalize} can't be blank"
       end
     end
+
+    scenario 'email address is invalid' do
+      user = build(:user, email: "invalid")
+      expect{ sign_up(user) }.not_to change{ User.count }
+      expect(current_path).to eq '/users'
+      expect(page).not_to have_content "Hello, test-user!"
+      expect(page).to have_content "Email is invalid"
+    end
   end
 end
