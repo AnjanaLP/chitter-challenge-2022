@@ -1,8 +1,8 @@
 feature 'User registration' do
-  context 'with valid credentials' do
-    let (:user)  { user = build(:user) }
+  let (:user)  { user = build(:user) }
 
-    scenario 'a user can sign up' do
+  context 'successful sign up' do
+    scenario 'valid credentials submitted' do
       visit '/'
       expect(page).to have_content "Welcome to Chitter!"
       expect(page).to have_button "Sign up"
@@ -22,14 +22,40 @@ feature 'User registration' do
     end
   end
 
-  context 'with non-matching password and confirmation' do
-    let (:user)  { user = build(:user, password_confirmation: "incorrect_password") }
-
-    scenario 'a user cannot sign up and sees an error message' do
+  context 'unsuccessful sign up' do
+    scenario 'non-matching password and confirmation' do
+      user = build(:user, password_confirmation: "incorrect_password")
       expect{ sign_up(user) }.not_to change{ User.count }
       expect(current_path).to eq '/users'
       expect(page).not_to have_content "Hello, test-user!"
       expect(page).to have_content "Password confirmation doesn't match Password"
+    end
+
+    scenario 'the email address is already taken' do
+      sign_up(user)
+      expect{ sign_up(user) }.not_to change{ User.count }
+      expect(current_path).to eq '/users'
+      expect(page).not_to have_content "Hello, test-user!"
+      expect(page).to have_content "Email has already been taken"
+    end
+
+    scenario 'the username is already taken' do
+      sign_up(user)
+      expect{ sign_up(user) }.not_to change{ User.count }
+      expect(current_path).to eq '/users'
+      expect(page).not_to have_content "Hello, test-user!"
+      expect(page).to have_content "Username has already been taken"
+    end
+
+    scenario 'name, email or username not provided' do
+      attributes = [:name, :email, :username]
+      attributes.each do |attribute|
+        user = build(:user, "#{attribute}": nil)
+        expect{ sign_up(user) }.not_to change{ User.count }
+        expect(current_path).to eq '/users'
+        expect(page).not_to have_content "Hello, test-user!"
+        expect(page).to have_content "#{attribute.capitalize} can't be blank"
+      end
     end
   end
 end
