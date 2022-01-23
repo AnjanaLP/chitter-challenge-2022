@@ -13,12 +13,12 @@ module Helpers
     visit '/sessions/new'
     fill_in :email, with: email
     fill_in :password, with: password
-    click_button "Log in"
+    click_button "Submit"
   end
 
   def post_peep
     visit '/peeps/new'
     fill_in :content, with: peep.content
-    click_button "Post peep"
+    click_button "Submit"
   end
 end
