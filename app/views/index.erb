@@ -1,0 +1,8 @@
+<% if current_user %>
+  <h1>Hello, <%= current_user.username %>!</h1>
+<% else %>
+  <h1>Welcome to Chitter!</h1>
+  <form action="/users/new">
+    <input type="submit" value="Sign up">
+  </form>
+<% end %>

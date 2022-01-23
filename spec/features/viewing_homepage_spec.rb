@@ -1,6 +1,0 @@
-feature 'Viewing homepage' do
-  scenario 'can see a welcome message' do
-    visit '/'
-    expect(page).to have_content "Welcome to Chitter!"
-  end
-end

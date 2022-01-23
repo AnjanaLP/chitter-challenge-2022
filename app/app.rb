@@ -1,14 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-
-class Chitter < Sinatra::Base
-  configure :development do
-    register Sinatra::Reloader
-  end
-
-  get '/' do
-    "Welcome to Chitter!"
-  end
-
-  run! if app_file == $0
-end
+require 'sinatra/activerecord'
+require_relative 'models/user'
+require_relative 'controllers/application_controller'
+require_relative 'controllers/users_controller'
