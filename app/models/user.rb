@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   include BCrypt
 
+  has_many :peeps
+
   has_secure_password
   validates :email, uniqueness: true, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :username, uniqueness: true, presence: true

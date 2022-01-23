@@ -15,4 +15,10 @@ module Helpers
     fill_in :password, with: password
     click_button "Log in"
   end
+
+  def post_peep
+    visit '/peeps/new'
+    fill_in :content, with: peep.content
+    click_button "Post peep"
+  end
 end
