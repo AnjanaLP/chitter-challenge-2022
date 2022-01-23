@@ -12,6 +12,7 @@ gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
 gem 'sinatra-flash'
+gem 'sinatra-partial'
 gem 'webrick'
 
 group :test do

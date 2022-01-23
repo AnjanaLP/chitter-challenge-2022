@@ -1,0 +1,5 @@
+<% flash.keys.each do |type| %>
+  <% flash[type].each do |message| %>
+    <p class="<%=type%>"><%= message %></p>
+  <% end %>
+<% end %>

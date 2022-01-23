@@ -6,11 +6,7 @@
     <link rel="stylesheet" href="/css/application.css">
   </head>
   <body>
-    <% flash.keys.each do |type| %>
-      <% flash[type].each do |message| %>
-        <p class="<%=type%>"><%= message %></p>
-      <% end %>
-    <% end %>
+    <%= partial :flash_messages %>
     <%= yield %>
   </body>
 </html>
