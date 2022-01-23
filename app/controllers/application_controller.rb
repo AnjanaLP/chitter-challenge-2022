@@ -6,12 +6,9 @@ class Chitter < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+  register Sinatra::Flash
 
   helpers Helpers
-
-  get '/' do
-    erb :index
-  end
 
   run! if app_file == $0
 end

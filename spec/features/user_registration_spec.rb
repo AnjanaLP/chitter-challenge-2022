@@ -11,17 +11,21 @@ feature 'User registration' do
       within 'h1#heading' do
         expect(page).to have_content "Sign up"
       end
-      fill_in :name, with: "Test User"
-      fill_in :email, with: "test@example.com"
-      fill_in :username, with: "test-user"
-      fill_in :password, with: "password123"
-      fill_in :password_confirmation, with: "password123"
-      click_button "Submit"
 
+      expect{ sign_up }.to change{ User.count }.by 1
       expect(current_path).to eq '/'
       expect(page).not_to have_content "Welcome to Chitter!"
       expect(page).not_to have_button "Sign up"
       expect(page).to have_content "Hello, test-user!"
+    end
+  end
+
+  context 'with non-matching password and confirmation' do
+    scenario 'a user cannot sign up and sees an error message' do
+      expect{ sign_up(password_confirmation: "incorrect_password") }.not_to change{ User.count }
+      expect(current_path).to eq '/users'
+      expect(page).not_to have_content "Hello, test-user!"
+      expect(page).to have_content "Password confirmation doesn't match Password"
     end
   end
 end
