@@ -8,7 +8,7 @@ require 'simplecov'
 require 'simplecov-console'
 require_relative 'support/database_cleaner'
 require_relative 'support/factory_bot'
-require_relative 'helpers'
+require_relative 'support/helpers'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,

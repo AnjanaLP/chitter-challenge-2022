@@ -8,4 +8,11 @@ module Helpers
     fill_in :password_confirmation, with: user.password_confirmation
     click_button "Submit"
   end
+
+  def log_in(email: user.email, password: user.password)
+    visit '/sessions/new'
+    fill_in :email, with: email
+    fill_in :password, with: password
+    click_button "Log in"
+  end
 end
