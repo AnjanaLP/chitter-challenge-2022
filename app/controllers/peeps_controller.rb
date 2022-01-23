@@ -9,7 +9,12 @@ class Chitter < Sinatra::Base
   end
 
   post '/peeps' do
-    peep = Peep.create(content: params[:content], user: current_user)
-    redirect '/peeps'
+    if current_user
+      peep = Peep.create(content: params[:content], user: current_user)
+      redirect '/peeps'
+    else
+      flash.next[:error] = ["Please log in to continue"]
+      redirect '/sessions/new'
+    end
   end
 end

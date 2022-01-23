@@ -1,5 +1,9 @@
 <% if current_user %>
   <h1>Hello, <%= current_user.username %>!</h1>
+  <form action="peeps/new" method="get">
+    <input type="submit" value="Post a peep">
+  </form>
+
   <form action="/sessions" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Log out">
@@ -14,7 +18,3 @@
     <input type="submit" value="Log in">
   </form>
 <% end %>
-
-<form action="/peeps/new" method="get">
-  <input type="submit" value="Post a peep">
-</form>
