@@ -5,12 +5,12 @@ class Chitter < Sinatra::Base
   end
 
   get '/peeps' do
-    erb :'peeps/index', locals: { peeps: Peep.all }
+    erb :'peeps/index', locals: { peeps: Peep.all_in_reverse_order }
   end
 
   post '/peeps' do
     if current_user
-      peep = Peep.create(content: params[:content], user: current_user)
+      Peep.create(content: params[:content], user: current_user)
       redirect '/peeps'
     else
       flash.next[:error] = ["Please log in to continue"]

@@ -1,12 +1,12 @@
 <h1>Peeps</h1>
 
-<ul class="peep">
+<ul>
   <% peeps.each do |peep| %>
-    <p><strong><%= peep.content %></strong>
+    <li class="peep" id="peep-<%= peep.id %>"><strong><%= peep.content %></strong>
       <em>
         Posted by <%= peep.user.username %> aka <%= peep.user.name %>
-                  <%= peep.created_at.strftime("on %m/%d/%Y at %I:%M%p") %>
+                  <%= peep.created_at.strftime('at %H:%M on %d-%m-%Y') %>
       </em>
-    </p>
+    </li>
   <% end %>
 </ul>
