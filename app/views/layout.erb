@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="/css/application.css">
   </head>
   <body>
-    <%= partial :navigation %>
-    <%= partial :flash_messages %>
-    <%= yield %>
+    <div class="header">
+      <h1><a href="/">Chitter</a></h1>
+    </div>
+    <div class="center">
+      <%= partial :flash_messages %>
+      <%= yield %>
+    </div>
   </body>
 </html>
